@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CartPage extends StatelessWidget {
+  static final routeName = 'cart';
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: Text('Cart Page'),
+      ),
+    );
   }
 }
