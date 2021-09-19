@@ -12,24 +12,4 @@ class ApiHelper {
     List<dynamic> cars = response.data['cars'];
     return cars;
   }
-
-  // Future<List<dynamic>> getCategoryProducts(String categoryName) async {
-  //   String url = 'https://fakestoreapi.com/products/category/$categoryName';
-  //   Response response = await dio.get(url);
-  //   List<dynamic> products = response.data;
-  //   return products;
-  // }
-
-  // Future<List<dynamic>> getAllProducts() async {
-  //   String url = 'https://fakestoreapi.com/products';
-  //   Response response = await dio.get(url);
-  //   List<dynamic> products = response.data;
-  //   return products;
-  // }
-
-  // Future<dynamic> getSpecificProduct(int id) async {
-  //   String url = 'https://fakestoreapi.com/products/$id';
-  //   Response response = await dio.get(url);
-  //   return response.data;
-  // }
 }

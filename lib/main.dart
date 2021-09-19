@@ -1,3 +1,4 @@
+import 'package:car_shopping/data/db_helper.dart';
 import 'package:car_shopping/providers/car_provider.dart';
 import 'package:car_shopping/services/routes.dart';
 import 'package:car_shopping/ui/pages/Favourite_page.dart';
@@ -10,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // DbHelper.dbHelper.initDatabase();
+  WidgetsFlutterBinding.ensureInitialized();
+  DbHelper.dbHelper.initDatabase();
   runApp(ChangeNotifierProvider<CarProvider>(
     create: (context) => CarProvider(),
     child: MaterialApp(

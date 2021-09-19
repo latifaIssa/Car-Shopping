@@ -50,7 +50,9 @@ class _AvaliableCarsPageState extends State<AvaliableCarsPage> {
               ),
               child: IconButton(
                 alignment: Alignment.center,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 icon: Icon(
                   Icons.arrow_back_ios_new,
                   textDirection: TextDirection.ltr,
@@ -82,77 +84,105 @@ class _AvaliableCarsPageState extends State<AvaliableCarsPage> {
                   dragStartBehavior: DragStartBehavior.start,
                   slivers: [
                     SliverToBoxAdapter(
-                        child: MasonryGrid(
-                            mainAxisSpacing: 8,
-                            crossAxisSpacing: 10,
-                            staggered: true,
-                            column: 2,
-                            children: List.generate(
-                              provider.AvailableCars.length,
-                              (i) => Card(
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 10,
+                      child: MasonryGrid(
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 10,
+                        staggered: true,
+                        column: 2,
+                        children: List.generate(
+                          provider.AvailableCars.length,
+                          (i) => Card(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 10,
+                            ),
+                            clipBehavior: Clip.antiAlias,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            elevation: 4,
+                            child: Column(
+                              children: [
+                                CachedNetworkImage(
+                                  alignment: Alignment.topCenter,
+                                  imageUrl:
+                                      'https://stat.overdrive.in/wp-content/odgallery/2020/06/57263_2020_Mercedes_Benz_GLS.jpg',
                                 ),
-                                clipBehavior: Clip.antiAlias,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                                SizedBox(
+                                  height: height * 0.01,
                                 ),
-                                elevation: 4,
-                                child: Column(
-                                  children: [
-                                    CachedNetworkImage(
-                                      alignment: Alignment.topCenter,
-                                      imageUrl:
-                                          'https://stat.overdrive.in/wp-content/odgallery/2020/06/57263_2020_Mercedes_Benz_GLS.jpg',
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Text(
-                                      provider.AvailableCars[i].car +
-                                          ' ' +
-                                          provider.AvailableCars[i].carModel,
+                                Text(
+                                  provider.AvailableCars[i].car +
+                                      ' ' +
+                                      provider.AvailableCars[i].carModel,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Palette.secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                Text(
+                                  provider.AvailableCars[i].price + '\$',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Palette.secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.03,
+                                ),
+                                RaisedButton(
+                                  color: Palette.secondary,
+                                  onPressed: () {},
+                                  child: Container(
+                                    child: Text(
+                                      'Book Now',
                                       style: TextStyle(
-                                        fontSize: 15,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    decoration: BoxDecoration(
                                         color: Palette.secondary,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Text(
-                                      provider.AvailableCars[i].price + '\$',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: Palette.secondary,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.03,
-                                    ),
-                                    RaisedButton(
-                                      color: Palette.secondary,
-                                      onPressed: () {},
-                                      child: Container(
-                                        child: Text(
-                                          'Book Now',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        decoration: BoxDecoration(
-                                            color: Palette.secondary,
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                      ),
-                                    )
-                                  ],
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                  ),
                                 ),
-                              ),
-                            )))
+                                ListTile(
+                                  leading: IconButton(
+                                    onPressed: () {
+                                      provider.addToFavourite(
+                                          provider.AvailableCars[i]);
+                                    },
+                                    icon: Icon(
+                                      Icons.favorite,
+                                      color: provider.favouriteProducts?.any(
+                                                  (element) =>
+                                                      element.id ==
+                                                      provider.AvailableCars[i]
+                                                          .id) ??
+                                              false
+                                          ? Colors.red
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                  trailing: IconButton(
+                                    onPressed: () {
+                                      provider
+                                          .addToCart(provider.AvailableCars[i]);
+                                    },
+                                    icon: Icon(Icons.shopping_cart_outlined),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

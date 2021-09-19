@@ -273,7 +273,7 @@ class _MainPageState extends State<MainPage>
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                          height: height * 0.03,
+                                                          height: height * 0.01,
                                                         ),
                                                         RaisedButton(
                                                           color:
@@ -295,7 +295,7 @@ class _MainPageState extends State<MainPage>
                                                                         .circular(
                                                                             10)),
                                                           ),
-                                                        )
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -369,7 +369,8 @@ class _MainPageState extends State<MainPage>
                         ),
                       ),
                     ),
-                  )
+                  ),
+
                   // Expanded(
                   //   flex: 2,
                   //   child: TabBarView(
