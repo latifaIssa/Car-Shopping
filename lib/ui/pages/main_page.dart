@@ -1,12 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_shopping/providers/car_provider.dart';
 import 'package:car_shopping/services/colors.dart';
+import 'package:car_shopping/services/icons.dart';
 import 'package:car_shopping/services/routes.dart';
 import 'package:car_shopping/ui/pages/Favourite_page.dart';
 import 'package:car_shopping/ui/pages/avaliable_cars.dart';
 import 'package:car_shopping/ui/pages/cart_page.dart';
 import 'package:car_shopping/ui/pages/home_page.dart';
 import 'package:car_shopping/ui/pages/search_page.dart';
+import 'package:car_shopping/ui/widgets/list_tile_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -53,18 +55,20 @@ class _MainPageState extends State<MainPage>
       text: 'home',
     ),
     Tab(
-      icon: Icon(Icons.shopping_cart_outlined),
+      icon: Icon(
+        GlobalIcons.cart,
+      ),
       text: 'cart',
     ),
     Tab(
       icon: Icon(
-        Icons.favorite_outline,
+        GlobalIcons.favourite,
       ),
       text: 'favourite',
     ),
     Tab(
       icon: Icon(
-        Icons.search,
+        GlobalIcons.search,
       ),
       text: 'Search',
     ),
@@ -92,7 +96,7 @@ class _MainPageState extends State<MainPage>
         child: Consumer<CarProvider>(builder: (context, provider, x) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Palette.primary,
+              backgroundColor: GlobalColors.primary,
               elevation: 0,
               // bottom: TabBar(tabs: [
 
@@ -113,47 +117,45 @@ class _MainPageState extends State<MainPage>
                 child: ListView(
                   // Important: Remove any padding from the ListView.
                   padding: EdgeInsets.zero,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 100,
-                    ),
-                    Container(
-                      color: color,
-                      child: ListTile(
-                        title: Text('My Cart'),
-                        onTap: () {
-                          RouteHelper.routeHelper.goToPage(CartPage.routeName);
-                          setState(() {
-                            color = Palette.secondary;
-                          });
-                        },
+                  children: [
+                    DrawerHeader(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [],
+                      ),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.amber,
+                            GlobalColors.primary,
+                            // GlobalColors.secondary,
+                          ],
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          stops: [0.0, 0.6],
+                          tileMode: TileMode.repeated,
+                        ),
                       ),
                     ),
-                    Container(
-                      color: color,
-                      child: ListTile(
-                        title: Text('Favourite'),
-                        onTap: () {
-                          RouteHelper.routeHelper
-                              .goToPage(FavouritePage.routeName);
-                          setState(() {
-                            color = Palette.secondary;
-                          });
-                        },
-                      ),
+                    ListTileWidget(
+                      label: 'Home',
+                      routeName: HomePage.routeName,
+                      icon: Icons.home,
                     ),
-                    Container(
-                      color: color,
-                      child: ListTile(
-                        title: Text('Search'),
-                        onTap: () {
-                          RouteHelper.routeHelper
-                              .goToPage(SearchPage.routeName);
-                          setState(() {
-                            color = Palette.secondary;
-                          });
-                        },
-                      ),
+                    ListTileWidget(
+                      label: 'My Cart',
+                      routeName: CartPage.routeName,
+                      icon: GlobalIcons.cart,
+                    ),
+                    ListTileWidget(
+                      label: 'Favourite',
+                      routeName: FavouritePage.routeName,
+                      icon: GlobalIcons.favourite,
+                    ),
+                    ListTileWidget(
+                      label: 'Search',
+                      routeName: SearchPage.routeName,
+                      icon: GlobalIcons.search,
                     ),
                   ],
                 ),
@@ -169,7 +171,7 @@ class _MainPageState extends State<MainPage>
                         height: 0.3 * height,
                         // child: Text('Pick your favourite car'),
                         decoration: BoxDecoration(
-                          color: Palette.primary,
+                          color: GlobalColors.primary,
                           borderRadius: BorderRadius.vertical(
                             bottom: Radius.elliptical(
                                 MediaQuery.of(context).size.width, 120),
@@ -253,7 +255,7 @@ class _MainPageState extends State<MainPage>
                                                               e.carModel,
                                                           style: TextStyle(
                                                             fontSize: 15,
-                                                            color: Palette
+                                                            color: GlobalColors
                                                                 .secondary,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -266,7 +268,7 @@ class _MainPageState extends State<MainPage>
                                                           e.price + '\$',
                                                           style: TextStyle(
                                                             fontSize: 15,
-                                                            color: Palette
+                                                            color: GlobalColors
                                                                 .secondary,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -276,8 +278,8 @@ class _MainPageState extends State<MainPage>
                                                           height: height * 0.01,
                                                         ),
                                                         RaisedButton(
-                                                          color:
-                                                              Palette.secondary,
+                                                          color: GlobalColors
+                                                              .secondary,
                                                           onPressed: () {},
                                                           child: Container(
                                                             child: Text(
@@ -288,7 +290,7 @@ class _MainPageState extends State<MainPage>
                                                               ),
                                                             ),
                                                             decoration: BoxDecoration(
-                                                                color: Palette
+                                                                color: GlobalColors
                                                                     .secondary,
                                                                 borderRadius:
                                                                     BorderRadius
@@ -331,7 +333,7 @@ class _MainPageState extends State<MainPage>
                         vertical: 25,
                       ),
                       decoration: BoxDecoration(
-                        color: Palette.primary,
+                        color: GlobalColors.primary,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: ListTile(
@@ -352,7 +354,7 @@ class _MainPageState extends State<MainPage>
                         trailing: Container(
                           // color: Colors.white,
                           child: IconButton(
-                            color: Palette.secondary,
+                            color: GlobalColors.secondary,
                             onPressed: () {
                               RouteHelper.routeHelper
                                   .goToPage(AvaliableCarsPage.routeName);

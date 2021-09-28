@@ -56,7 +56,7 @@ class _AvaliableCarsPageState extends State<AvaliableCarsPage> {
                 icon: Icon(
                   Icons.arrow_back_ios_new,
                   textDirection: TextDirection.ltr,
-                  color: Palette.primary,
+                  color: GlobalColors.primary,
                 ),
               ),
             ),
@@ -117,7 +117,7 @@ class _AvaliableCarsPageState extends State<AvaliableCarsPage> {
                                       provider.AvailableCars[i].carModel,
                                   style: TextStyle(
                                     fontSize: 15,
-                                    color: Palette.secondary,
+                                    color: GlobalColors.secondary,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -128,7 +128,7 @@ class _AvaliableCarsPageState extends State<AvaliableCarsPage> {
                                   provider.AvailableCars[i].price + '\$',
                                   style: TextStyle(
                                     fontSize: 15,
-                                    color: Palette.secondary,
+                                    color: GlobalColors.secondary,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -136,7 +136,7 @@ class _AvaliableCarsPageState extends State<AvaliableCarsPage> {
                                   height: height * 0.03,
                                 ),
                                 RaisedButton(
-                                  color: Palette.secondary,
+                                  color: GlobalColors.secondary,
                                   onPressed: () {},
                                   child: Container(
                                     child: Text(
@@ -146,7 +146,7 @@ class _AvaliableCarsPageState extends State<AvaliableCarsPage> {
                                       ),
                                     ),
                                     decoration: BoxDecoration(
-                                        color: Palette.secondary,
+                                        color: GlobalColors.secondary,
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                   ),
